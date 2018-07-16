@@ -1,0 +1,8 @@
+h1 {
+    color:blue;
+}
+table, thead, td {
+    border: 2px solid black;
+    text-align: left;
+    padding-left: 300px;
+}
