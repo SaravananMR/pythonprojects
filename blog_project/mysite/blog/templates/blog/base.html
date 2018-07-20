@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    <title>Page Title</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+
+    <style>
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .animate-me {
+    
+            animation: 6s infinite bgcolorchange;
+        }
+        @keyframes bgcolorchange {
+            0% {
+            color: red;
+            }
+            10% {
+            color: green;
+            }
+            20% {
+            color: yellow;
+            }
+            30% {
+            color: rgb(255, 0, 191);
+            }
+            40% {
+            color: red;
+            }
+            50% {
+            color: rgb(106, 255, 0);
+            }
+            60% {
+            color: rgb(255, 132, 0);
+            }
+            70% {
+            color: rgb(162, 88, 88);
+            }
+            80% {
+            color: rgb(51, 255, 0);
+            }
+            
+        }
+        @-webkit-keyframes bgcolorchange {
+            0%   {background: red;}
+            10%  {background: yellow;}
+            20%  {background: green;}
+            30% {background: blue;}
+            40% {background: rgb(255, 0, 170);}
+            50% {background: rgb(106, 255, 0);}
+            60% {background: rgb(255, 132, 0);}
+            70% {background: rgb(162, 88, 88);}
+            80% {background: rgb(51, 255, 0);}
+        }
+    </style>
+    
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <!-- <nav class="navbar navbar-dark bg-dark techfont">
+        <div class="collapse navbar-collapse " id="navbarsExample03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Blog</a></li>
+                <li class="nav-item active"><a href="{% url 'about' %}">About</a></li>
+                <li class="nav-item active"><a href="https://www.github.com">Github</a></li>
+                <li class="nav-item active" ><a href="https://www.linkedin.com">LinkedIn</a></li>
+            
+
+            
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a href="{% url 'post_new' %}">New Post</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li class="nav-item active">
+                    <a>Welcome: {{ user.username }}</a>
+                </li>
+                {% else %}
+                <li class="nav-item active"><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+                {% endif %}
+                    
+            </ul>
+        </div>   
+    </nav> -->
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark techfont">
+            <a class="navbar-brand bigbrand animate-me" href="{% url 'post_list' %}">My Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse" id="navbarsExample03">
+                    <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item active">
+                        <a class="nav-link animate-me" href="{% url 'about' %}">About <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link animate-me" href="https://www.github.com">Github <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link animate-me" href="https://www.linkedin.com">LinkedIn<span class="sr-only">(current)</span></a>
+                        </li>
+                    
+                        
+                    </ul>
+                <div class="form-inline my-2 my-md-0">
+                        <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link animate-me" href="{% url 'post_new' %}">New Post</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link animate-me" href="{% url 'post_draft_list' %}">Drafts</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link animate-me" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link animate-me">Welcome: {{ user.username }}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item active"><a href="{% url 'login' %}"><i class="fa fa-user-circle-o animate-me" style="font-size:48px;color:red"></i></a></li> 
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+    </nav>
+        
+
+    <!-- Bootstrap -->
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog_posts">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
