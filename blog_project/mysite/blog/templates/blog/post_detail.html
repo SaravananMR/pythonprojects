@@ -23,7 +23,7 @@
     <i class="fa fa-pencil animate-me" style="font-size:26px"></i>
 </a>
 
-<a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+<a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">   
     <i class="fa fa-close animate-me" style="font-size:26px"></i>
 </a>
 {% endif %}
@@ -34,7 +34,7 @@
 <div class="container">
         
     {% for comment in post.comments.all %}
-    <h1>Hello</h1>
+    <!-- <h1>Hello</h1> -->
     <br>
         {% if user.is_authenticated or comment.approved_comment %}
             {{ comment.created_date }}
